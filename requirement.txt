@@ -1,0 +1,6 @@
+# vuln requirement.txt
+
+pandas
+scikit-learn
+scrapy == 1.3
+Twisted == 16.4.1
