@@ -14,6 +14,23 @@ BOT_NAME = 'cic'
 SPIDER_MODULES = ['cic.spiders']
 NEWSPIDER_MODULE = 'cic.spiders'
 
+# ITEM_PIPELINES = ['cic.pipline.CicPipeline']
+# DATABASE = {
+#     'drivername': 'postgres',
+#     'host': 'localhost',
+#     'port': '5432',
+#     'username': 'af',
+#     'password': '',
+#     'database': 'vuln'
+# }
+
+# MONGO SETUP
+
+ITEM_PIPELINES = ['cic.piplines.CicPipeline']
+MONGODB_SERVER = "localhost"
+MONGODB_PORT = 27017
+MONGODB_DB = "vuln"
+MONGODB_COLLECTION = "chromeissues"
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.110 Safari/537.36'
@@ -64,9 +81,9 @@ ROBOTSTXT_OBEY = False
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'cic.pipelines.CicPipeline': 300,
-#}
+ITEM_PIPELINES = {
+   'cic.pipelines.CicPipeline': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html
