@@ -11,8 +11,6 @@ from scrapy.conf import settings
 from scrapy.exceptions import DropItem
 from scrapy import log
 
-from scrapy.conf import settings
-
 class CicPipeline(object):
     """docstring for MongoDBPipeline."""
 
