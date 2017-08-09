@@ -2,4 +2,4 @@ pip-selfcheck.json
 bin/
 lib/
 include/
-
+__pycache__

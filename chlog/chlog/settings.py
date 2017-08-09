@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for cic project
+# Scrapy settings for chlog project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -9,34 +9,24 @@
 #     http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #     http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'cic'
+BOT_NAME = 'chlog'
 
-SPIDER_MODULES = ['cic.spiders']
-NEWSPIDER_MODULE = 'cic.spiders'
+SPIDER_MODULES = ['chlog.spiders']
+NEWSPIDER_MODULE = 'chlog.spiders'
 
-# ITEM_PIPELINES = ['cic.pipline.CicPipeline']
-# DATABASE = {
-#     'drivername': 'postgres',
-#     'host': 'localhost',
-#     'port': '5432',
-#     'username': 'af',
-#     'password': '',
-#     'database': 'vuln'
-# }
+# Mysql Setup
+# ITEM_PIPELINES = ['chlog.pipline.ChlogPipeline']
+# MYSQL_HOST = 'localhost'
+# MYSQL_DBNAME = 'chlog'
+# MYSQL_USER = 'root'
+# MYSQL_PASSWD = 'katakunci'
 
-# MONGO SETUP
-
-ITEM_PIPELINES = ['cic.piplines.CicPipeline']
-MONGODB_SERVER = "localhost"
-MONGODB_PORT = 27017
-MONGODB_DB = "vuln"
-MONGODB_COLLECTION = "chromeissues"
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.110 Safari/537.36'
+#USER_AGENT = 'chlog (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = False
+ROBOTSTXT_OBEY = True
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -64,13 +54,13 @@ ROBOTSTXT_OBEY = False
 # Enable or disable spider middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'cic.middlewares.CicSpiderMiddleware': 543,
+#    'chlog.middlewares.ChlogSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'cic.middlewares.MyCustomDownloaderMiddleware': 543,
+#    'chlog.middlewares.MyCustomDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -81,9 +71,9 @@ ROBOTSTXT_OBEY = False
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-ITEM_PIPELINES = {
-   'cic.pipelines.CicPipeline': 300,
-}
+#ITEM_PIPELINES = {
+#    'chlog.pipelines.ChlogPipeline': 300,
+#}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html

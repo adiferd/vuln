@@ -8,13 +8,14 @@
 import scrapy
 
 
-class CicItem(scrapy.Item):
+class ChlogItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    id_cic = scrapy.Field()
+    id_commit = scrapy.Field()
     title = scrapy.Field()
-    report_date = scrapy.Field()
-    status = scrapy.Field()
-    closed = scrapy.Field()
-    description = scrapy.Field()
+    author = scrapy.Field()
+    commiter = scrapy.Field()
+    commit_message = scrapy.Field()
+    time = scrapy.Field()
+    difTree = scrapy.Field()
     pass
