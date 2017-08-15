@@ -10,9 +10,10 @@ class CommitSpider(scrapy.Spider):
 
 
     item = ChlogItem()
+    title = ''
     def parse(self,response):
+        self.title = response.xpath("/html/body/div/div/div[3]/div[2]/ol/li[1]/a[2]/text()").extract()
         for detail_href in response.css('.CommitLog li a::attr(href)').extract(): #detail link
-            self.item['title']= response.xpath("/html/body/div/div/div[3]/div[2]/ol/li[1]/a[2]/text()").extract()
             yield scrapy.Request(response.urljoin(detail_href),
                                 callback=self.parse_commit_detail)
         next_page = response.css('.LogNav a::attr(href)').extract()[-1] # next page link is at the end of page
@@ -30,10 +31,16 @@ class CommitSpider(scrapy.Spider):
                 return result[0]
 
         self.item['id_commit'] = response.xpath("/html/body/div/div/div[2]/table/tr[1]/td[1]/text()").extract(),
+        self.item['title'] = self.title
         self.item['author'] = response.xpath("/html/body/div/div/div[2]/table/tr[2]/td[1]/text()").extract(),
         self.item['time'] = response.xpath("/html/body/div/div/div[2]/table/tr[2]/td[2]/text()").extract(),
         self.item['commiter'] = response.xpath("/html/body/div/div/div[2]/table/tr[3]/td[1]/text()").extract(),
         self.item['commit_message'] = response.xpath("/html/body/div/div/pre/text()").extract()
-        self.item['difTree'] = response.xpath("/html/body/div/div/ul/li/a/text()").extract()
+        # self.item['difTree'] = response.xpath("/html/body/div/div/ul/li/a/text()").extract()
+        self.item['difTree'] = []
+        dif  = response.xpath("/html/body/div/div/ul/li/a/text()").extract()
+        for value in dif:
+            self.item['difTree'].append(value)
+            pass
 
         yield self.item

@@ -5,23 +5,27 @@
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 
-import pymysql
+import pymongo
 from scrapy import log
-
-from mysql import settings
+from scrapy.conf import settings
+from scrapy.exceptions import DropItem
 
 class ChlogPipeline(object):
 
+    """docstring for MongoDBPipeline."""
     def __init__(self):
-        self.connect = pymysql.connect(
-            host = settings.MYSQL_HOST,
-            db = settings.MYSQL_DBNAME,
-            user = settings.MYSQL_USER,
-            passwd = settings.MYSQL_PASSWD,
-            charset = 'utf8'
-            use_unicode = True
+        connection = pymongo.MongoClient(
+            settings['MONGODB_SERVER'],
+            settings['MONGODB_PORT']
         )
-        self.cursor = self.connect.cursor()
-        
+        db = connection[settings['MONGODB_DB']]
+        self.collection = db[settings['MONGODB_COLLECTION']]
+
     def process_item(self, item, spider):
+        for data in item:
+            if not data:
+                raise DropItem("Missing data!")
+
+        self.collection.insert(dict(item))
+        log.msg("Commit log added to MongoDB", level=log.DEBUG, spider = spider)
         return item

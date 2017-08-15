@@ -14,12 +14,11 @@ BOT_NAME = 'chlog'
 SPIDER_MODULES = ['chlog.spiders']
 NEWSPIDER_MODULE = 'chlog.spiders'
 
-# Mysql Setup
-# ITEM_PIPELINES = ['chlog.pipline.ChlogPipeline']
-# MYSQL_HOST = 'localhost'
-# MYSQL_DBNAME = 'chlog'
-# MYSQL_USER = 'root'
-# MYSQL_PASSWD = 'katakunci'
+# Mongo Var
+MONGODB_SERVER = "localhost"
+MONGODB_PORT = 27017
+MONGODB_DB = "vuln"
+MONGODB_COLLECTION = "chromiumlog"
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
@@ -71,9 +70,9 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'chlog.pipelines.ChlogPipeline': 300,
-#}
+ITEM_PIPELINES = {
+   # 'chlog.pipelines.ChlogPipeline': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html

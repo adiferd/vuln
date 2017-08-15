@@ -1,0 +1,13 @@
+setup.py
+chlog/__init__.py
+chlog/items.py
+chlog/middlewares.py
+chlog/pipelines.py
+chlog/settings.py
+chlog/spiders/__init__.py
+chlog/spiders/commit.py
+project.egg-info/PKG-INFO
+project.egg-info/SOURCES.txt
+project.egg-info/dependency_links.txt
+project.egg-info/entry_points.txt
+project.egg-info/top_level.txt
