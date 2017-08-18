@@ -30,11 +30,11 @@ class CommitSpider(scrapy.Spider):
             if len(result) > 0:
                 return result[0]
 
-        self.item['id_commit'] = response.xpath("/html/body/div/div/div[2]/table/tr[1]/td[1]/text()").extract(),
+        self.item['id_commit'] = response.xpath("/html/body/div/div/div[2]/table/tr[1]/td[1]/text()").extract_first(),
         self.item['title'] = self.title
-        self.item['author'] = response.xpath("/html/body/div/div/div[2]/table/tr[2]/td[1]/text()").extract(),
-        self.item['time'] = response.xpath("/html/body/div/div/div[2]/table/tr[2]/td[2]/text()").extract(),
-        self.item['commiter'] = response.xpath("/html/body/div/div/div[2]/table/tr[3]/td[1]/text()").extract(),
+        self.item['author'] = response.xpath("/html/body/div/div/div[2]/table/tr[2]/td[1]/text()").extract_first(),
+        self.item['time'] = response.xpath("/html/body/div/div/div[2]/table/tr[2]/td[2]/text()").extract_first(),
+        self.item['commiter'] = response.xpath("/html/body/div/div/div[2]/table/tr[3]/td[1]/text()").extract_first(),
         self.item['commit_message'] = response.xpath("/html/body/div/div/pre/text()").extract()
         # self.item['difTree'] = response.xpath("/html/body/div/div/ul/li/a/text()").extract()
         self.item['difTree'] = []
